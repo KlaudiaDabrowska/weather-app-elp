@@ -65,3 +65,9 @@ export const StyledButton = styled(Button)`
     height: 30px;
   }
 `;
+
+export const Alert = styled.div`
+  color: ${({ theme }) => theme.colors.alertColor};
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  font-weight: bold;
+`;

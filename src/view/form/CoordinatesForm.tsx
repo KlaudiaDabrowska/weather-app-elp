@@ -5,23 +5,72 @@ import {
   StyledLabel,
   StyledInput,
   StyledButton,
+  Alert,
 } from "../../styles/CoordinatesForm.styles";
+import { useFormik } from "formik";
+
+interface Errors {
+  lat: string;
+  lon: string;
+}
 
 export const CoordinatesForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      lat: 0,
+      lon: 0,
+    },
+    validate: (values) => {
+      const errors: Errors = { lat: "", lon: "" };
+      if (!values.lat) {
+        errors.lat = "Required";
+      } else if (values.lat < -90 || values.lat > 90) {
+        errors.lat = "Must be between -90 and 90";
+      }
+
+      if (!values.lon) {
+        errors.lon = "Required";
+      } else if (values.lon < -180 || values.lon > 180) {
+        errors.lon = "Must be between -180 and 180";
+      }
+      return errors;
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={formik.handleSubmit}>
       <Form.Group>
         <StyledLabel label="LAT">
-          <StyledInput id="title" name="title" type="title" placeholder="Lat" />
-        </StyledLabel>
-        <StyledLabel label="LON">
           <StyledInput
-            id="author"
-            name="author"
-            type="author"
-            placeholder="Lon"
+            id="lat"
+            name="lat"
+            type="number"
+            placeholder="Lat"
+            onChange={formik.handleChange}
+            value={formik.values.lat}
+            onBlur={formik.handleBlur}
           />
         </StyledLabel>
+        {formik.touched.lat && formik.errors.lat ? (
+          <Alert>{formik.errors.lat}</Alert>
+        ) : null}
+        <StyledLabel label="LON">
+          <StyledInput
+            id="lon"
+            name="lon"
+            type="number"
+            placeholder="Lon"
+            onChange={formik.handleChange}
+            value={formik.values.lon}
+            onBlur={formik.handleBlur}
+          />
+        </StyledLabel>
+        {formik.touched.lon && formik.errors.lon ? (
+          <Alert>{formik.errors.lon}</Alert>
+        ) : null}
       </Form.Group>
       <StyledButton variant="primary" type="submit" size="sm">
         Search
