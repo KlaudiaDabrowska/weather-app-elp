@@ -2,7 +2,7 @@ import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
   colors: {
-    alertColor: "#A64452",
+    alertColor: "#ab071e",
     blackColor: "#000000",
     headerColor: "#FFFFFF",
     labelColor: "#808080",
