@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 600px;
-  height: 460px;
+  width: 550px;
+  height: 440px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 5px;
   box-shadow: 5px 5px 10px gray;
@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
 
 export const Header = styled.h3`
   margin-bottom: ${({ theme }) => theme.spacing.xxxl};
-  margin-top: ${({ theme }) => theme.spacing.xs};
+  margin-top: ${({ theme }) => theme.spacing.l};
   font-size: ${({ theme }) => theme.fontSize.l};
   color: black;
   @media (max-width: 540px) {

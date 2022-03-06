@@ -2,20 +2,43 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
+import { SelectedApi } from "../../weatherInfo/useWeatherInfo";
 
-export const Switch = () => {
+interface SwitchProps {
+  selectWeatherbit: () => void;
+  selectOpenWeather: () => void;
+  selectedApi: SelectedApi;
+}
+export const Switch = ({
+  selectWeatherbit,
+  selectOpenWeather,
+  selectedApi,
+}: SwitchProps) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if ((event.target as HTMLInputElement).value === "openWeather") {
+      selectOpenWeather();
+    } else {
+      selectWeatherbit();
+    }
+  };
+
   return (
     <FormControl>
-      <RadioGroup row name="row-radio-buttons-group">
+      <RadioGroup
+        row
+        name="row-radio-buttons-group"
+        onChange={handleChange}
+        value={selectedApi}
+      >
         <FormControlLabel
-          value="A"
+          value="openWeather"
           control={<Radio color="default" />}
-          label="API A"
+          label="OpenWeather API"
         />
         <FormControlLabel
-          value="B"
+          value="weatherbit"
           control={<Radio color="default" />}
-          label="API B"
+          label="Weatherbit API"
         />
       </RadioGroup>
     </FormControl>
