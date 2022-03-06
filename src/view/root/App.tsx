@@ -4,14 +4,18 @@ import { Wrapper } from "../../styles/App.styles";
 import { GlobalStyle } from "../../styles/GlobalStyle";
 import { theme } from "../../styles/theme";
 import { MainView } from "../mainView/MainView";
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "../../config/QueryClient";
 
 const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Wrapper />
-        <MainView />
+        <QueryClientProvider client={queryClient}>
+          <GlobalStyle />
+          <Wrapper />
+          <MainView />
+        </QueryClientProvider>
       </ThemeProvider>
     </>
   );

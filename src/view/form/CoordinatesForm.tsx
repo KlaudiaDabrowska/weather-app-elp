@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { Form } from "react-bootstrap";
 import {
   StyledForm,
@@ -8,20 +8,29 @@ import {
   Alert,
 } from "../../styles/CoordinatesForm.styles";
 import { useFormik } from "formik";
+import { Coordinates } from "../../openWeather/services/useOpenWeather";
 
 interface Errors {
-  lat: string;
-  lon: string;
+  lat?: string;
+  lon?: string;
 }
 
-export const CoordinatesForm = () => {
+interface CoordinatesFormProps {
+  coordinates: Coordinates;
+  setCoordinates: Dispatch<Coordinates>;
+}
+
+export const CoordinatesForm = ({
+  coordinates,
+  setCoordinates,
+}: CoordinatesFormProps) => {
   const formik = useFormik({
     initialValues: {
-      lat: 0,
-      lon: 0,
+      lat: coordinates.lat,
+      lon: coordinates.lon,
     },
     validate: (values) => {
-      const errors: Errors = { lat: "", lon: "" };
+      const errors: Errors = {};
       if (!values.lat) {
         errors.lat = "Required";
       } else if (values.lat < -90 || values.lat > 90) {
@@ -36,7 +45,7 @@ export const CoordinatesForm = () => {
       return errors;
     },
     onSubmit: (values) => {
-      console.log(values);
+      setCoordinates({ lon: values.lon, lat: values.lat });
     },
   });
 

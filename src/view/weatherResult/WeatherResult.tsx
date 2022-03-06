@@ -5,22 +5,27 @@ import {
   Result,
   Wrapper,
 } from "../../styles/WeatherResult.styles";
+import { CurrentWeatherResultInfo } from "../../weatherInfo/currentWeatherResultInfo";
 
-export const WeatherResult = () => {
+export interface WeatherResultProps {
+  weatherInfo: CurrentWeatherResultInfo | undefined;
+}
+
+export const WeatherResult = ({ weatherInfo }: WeatherResultProps) => {
+  if (!weatherInfo) {
+    return <Wrapper></Wrapper>;
+  }
   return (
     <Wrapper>
-      <Header>HELLO</Header>
+      <Header>{weatherInfo.city}</Header>
       <Description>
-        Temperture: <Result> 10000000000000000000 </Result>
+        Temperture: <Result> {weatherInfo.temperature} °C </Result>
       </Description>
       <Description>
-        Temperture: <Result> 10 </Result>
+        Pressure: <Result> {weatherInfo.pressure} hPa</Result>
       </Description>
       <Description>
-        Temperture: <Result> 10 </Result>
-      </Description>
-      <Description>
-        Temperture: <Result> 10 </Result>
+        Humidity: <Result> {weatherInfo.humidity} % </Result>
       </Description>
     </Wrapper>
   );
