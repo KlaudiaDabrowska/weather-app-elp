@@ -15,7 +15,7 @@ interface Errors {
   lon?: string;
 }
 
-interface CoordinatesFormProps {
+export interface CoordinatesFormProps {
   coordinates: Coordinates;
   setCoordinates: Dispatch<Coordinates>;
 }
