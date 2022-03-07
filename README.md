@@ -32,8 +32,8 @@ $ npm run test
 $ npm run test:watch
 
 # Start unit tests
-#(in this case, for the tests to work, you need to enter your API key in the "setEnvVars.js" file in the ".jest" folder)
 
+#(in this case, for the tests to work, you need to enter your API key in the "setEnvVars.js" file in the ".jest" folder)
 $ npm run test:jest
 
 
