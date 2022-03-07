@@ -19,7 +19,7 @@ export const WeatherResult = ({ weatherInfo }: WeatherResultProps) => {
     <Wrapper>
       <Header>{weatherInfo.city}</Header>
       <Description>
-        Temperture: <Result> {weatherInfo.temperature} °C </Result>
+        Temperature: <Result> {weatherInfo.temperature} °C </Result>
       </Description>
       <Description>
         Pressure: <Result> {weatherInfo.pressure} hPa</Result>
